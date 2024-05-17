@@ -1,13 +1,23 @@
 <template>
     <h1>{{ val }}</h1><br>
-    <input type="text" v-bind:value="val" @input="val = $event.target.value">
+    <button @click="getTest">aasdasd</button>
 </template>
 
 <script>
+import axios from 'axios';
     export default {
         data() {
             return {
-                val: ''
+                val: '--',
+            }
+        },
+        methods: {
+            async getTest() {
+                try {
+                    this.val = (await axios.get('/api/test')).data;
+                } catch (e) {
+                    alert('Error');
+                }
             }
         }
     }

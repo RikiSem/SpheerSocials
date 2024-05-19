@@ -1,20 +1,21 @@
 <template>
-    <input @change="$emit('changePass', this.pass)" v-model="pass" type="password" placeholder="Password" required>
+    <input @change="$emit('changeEmail', this.email)" v-model="email" type="email" placeholder="Email" required>
 </template>
 
 <script>
 export default {
-    name: "MyInputPass",
+    name: "MyInputMail",
     data(){
         return {
-            pass: ''
+            email: ''
         }
     }
+
 }
 </script>
 
 <style scoped>
-    * {
+    *{
         padding: 7px;
         width: 100%;
         margin: 5px;

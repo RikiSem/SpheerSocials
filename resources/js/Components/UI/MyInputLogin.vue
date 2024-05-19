@@ -1,5 +1,5 @@
 <template>
-    <input @change="$emit('changeLogin', this.login)" v-model="login" type="text" placeholder="Login" >
+    <input @change="$emit('changeLogin', this.login)" v-model="login" type="text" placeholder="Login" required>
 </template>
 
 <script>
@@ -16,8 +16,10 @@ export default {
 
 <style scoped>
     *{
-        padding: 5px;
+        padding: 7px;
         width: 100%;
         margin: 5px;
+        border: 1px solid #4949a7;
+        border-radius: 10px;
     }
 </style>

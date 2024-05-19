@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    public function test()
+    public function login(Request $req)
     {
-        return 'true';
+        $login = $req->get('login');
+        $pass = $req->get('pass');
+
+        return $req->all();
     }
 }

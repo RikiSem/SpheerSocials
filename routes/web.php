@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [VueController::class, 'showPage']);
+Route::get('{any?}', [VueController::class, 'showPage'])->where('any', '.*');

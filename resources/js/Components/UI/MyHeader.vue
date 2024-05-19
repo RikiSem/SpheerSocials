@@ -2,7 +2,7 @@
     <div class="header row">
         <div class="header_content">
             <img src="../../../../public/imgs/mainPic.png">
-            <h1>Название</h1>
+            <h1><strong>Spheer</strong></h1>
         </div>
 
     </div>
@@ -16,8 +16,8 @@ export default {
 
 <style scoped>
 .header{
+    height: 30%;
     display: flex;
-    border-bottom: 2px solid #4a5568;
 }
 
 img{
@@ -29,8 +29,11 @@ img{
     flex-direction: column;
     display: flex;
     margin: auto;
+    padding: 10px;
 }
 h1{
     margin: auto;
+    font-family: "Bahnschrift";
+    font-size: 50pt;
 }
 </style>

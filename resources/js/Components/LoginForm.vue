@@ -3,7 +3,7 @@
         <h1 class="dialogHeader">Вход</h1>
         <my-input-login @changeLogin="setLogin"></my-input-login>
         <my-input-pass @changePass="setPass"></my-input-pass>
-        <MyButton>Войти</MyButton>
+        <MyButton @click="auth">Войти</MyButton>
     </form>
 </template>
 
@@ -26,6 +26,10 @@ export default {
         setPass(pass){
             this.loginAuth.pass = pass;
         },
+        async auth(){
+            const response = await axios.post('/api/login', this.loginAuth);
+            console.log(response)
+        }
     }
 }
 </script>

@@ -15,5 +15,7 @@ export default {
         border-radius: 10px;
         background-color: white;
         margin: 5px;
+        max-width: 10rem;
+        word-wrap: break-word;
     }
 </style>

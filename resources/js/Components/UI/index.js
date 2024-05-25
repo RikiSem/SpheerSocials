@@ -7,6 +7,9 @@ import MyRegForm from "../MyRegForm.vue";
 import MyHeader from "./MyHeader.vue";
 import MyFooter from "./MyFooter.vue";
 import MyInputMail from "./MyInputMail.vue";
+import NavBar from "./NavBar.vue";
+import MainTemplate from "./MainTemplate.vue";
+import ContentTemplate from "./ContentTemplate.vue";
 
 export default [
     MyButton,
@@ -17,5 +20,8 @@ export default [
     MyInputPass,
     MyRegForm,
     MyHeader,
-    MyFooter
+    MyFooter,
+    NavBar,
+    MainTemplate,
+    ContentTemplate
 ]

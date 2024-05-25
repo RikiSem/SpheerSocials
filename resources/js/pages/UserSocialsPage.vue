@@ -1,6 +1,6 @@
 <template>
     <user-page-component>
-        Контент
+        Сообщества
     </user-page-component>
 </template>
 

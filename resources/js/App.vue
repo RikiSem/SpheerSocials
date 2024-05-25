@@ -1,7 +1,5 @@
 <template>
-    <div class="container">
-        <router-view></router-view>
-    </div>
+    <router-view></router-view>
 </template>
 
 <script>
@@ -12,7 +10,6 @@ export default {
 
 <style scoped>
  .container{
-     box-shadow: #4a5568 0 0 14px 1px;
      flex-direction: column;
      display: flex;
      width: border-box;

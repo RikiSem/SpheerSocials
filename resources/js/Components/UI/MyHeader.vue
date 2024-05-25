@@ -1,8 +1,8 @@
 <template>
-    <div class="header row">
+    <div class="header">
         <div class="header_content">
             <img src="../../../../public/imgs/mainPic.png">
-            <h1><strong>Spheer</strong></h1>
+            <p class="h4">Spheer</p>
         </div>
 
     </div>
@@ -21,7 +21,7 @@ export default {
 }
 
 img{
-    width: 20%;
+    width: clamp(5rem, 0.25rem + 2vw, 2rem);
     border-radius: 50%;
     margin: auto;
 }
@@ -31,9 +31,9 @@ img{
     margin: auto;
     padding: 10px;
 }
-h1{
+p{
     margin: auto;
     font-family: "Bahnschrift";
-    font-size: 50pt;
+    font-size: clamp(1rem, 0.25rem + 2vw, 2rem);
 }
 </style>

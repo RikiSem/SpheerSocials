@@ -10,6 +10,8 @@ import MyInputMail from "./MyInputMail.vue";
 import NavBar from "./NavBar.vue";
 import MainTemplate from "./MainTemplate.vue";
 import ContentTemplate from "./ContentTemplate.vue";
+import MyList from "./MyList.vue";
+import ListItem from "./ListItem.vue";
 
 export default [
     MyButton,
@@ -23,5 +25,7 @@ export default [
     MyFooter,
     NavBar,
     MainTemplate,
-    ContentTemplate
+    ContentTemplate,
+    MyList,
+    ListItem,
 ]

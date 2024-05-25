@@ -24,5 +24,8 @@ export default {
 </script>
 
 <style scoped>
-
+.contentHeader{
+    width: 100%;
+    min-height: 5%;
+}
 </style>

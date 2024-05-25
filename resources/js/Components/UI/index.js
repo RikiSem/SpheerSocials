@@ -12,11 +12,13 @@ import MainTemplate from "./MainTemplate.vue";
 import ContentTemplate from "./ContentTemplate.vue";
 import MyList from "./MyList.vue";
 import ListItem from "./ListItem.vue";
+import MyInput from "./MyInput.vue";
 
 export default [
     MyButton,
     MyDialog,
     LoginForm,
+    MyInput,
     MyInputMail,
     MyInputLogin,
     MyInputPass,

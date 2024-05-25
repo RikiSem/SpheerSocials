@@ -24,7 +24,8 @@ export default {
     display: flex;
 }
 .contentBody{
-    margin-left: 5rem;
+    width: 100%;
+    display: flex;
     margin-top: 5%;
 }
 .container{

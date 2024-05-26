@@ -13,9 +13,12 @@ import ContentTemplate from "./ContentTemplate.vue";
 import MyList from "./MyList.vue";
 import ListItem from "./ListItem.vue";
 import MyInput from "./MyInput.vue";
+import TextareaAbout from "./TextareaAbout.vue";
+import MyButtonRed from "./MyButtonRed.vue";
 
 export default [
     MyButton,
+    MyButtonRed,
     MyDialog,
     LoginForm,
     MyInput,
@@ -30,4 +33,5 @@ export default [
     ContentTemplate,
     MyList,
     ListItem,
+    TextareaAbout
 ]

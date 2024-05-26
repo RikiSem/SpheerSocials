@@ -35,7 +35,6 @@ export default {
     display: flex;
     margin: auto;
     height: 100%;
-    overflow-y: hidden;
 }
 .auth_btns {
     margin: auto;

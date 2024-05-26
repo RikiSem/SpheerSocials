@@ -1,5 +1,5 @@
 <template>
-    <input @change="$emit('changeEmail', this.email)" v-model="email" type="email" placeholder="Email" required>
+    <input @change="$emit('changeEmail', this.email)" v-model="email" type="email" placeholder="Почта" required>
 </template>
 
 <script>

@@ -14,6 +14,6 @@ export default {
      display: flex;
      width: border-box;
      height: 100vh;
-     overflow-y: hidden;
+     /*overflow-y: hidden;*/
  }
 </style>

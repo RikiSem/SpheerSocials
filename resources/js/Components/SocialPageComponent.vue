@@ -6,8 +6,10 @@
                     <my-header></my-header>
                 </template>
                 <template v-slot:content>
-                    <my-button @click="$router.push('/user/settings')">Профиль</my-button>
-                    <my-button @click="$router.push('/user/socials')">Сообщества</my-button>
+                    <my-button @click="$router.push('/social/:id/feed')">Лента</my-button>
+                    <my-button @click="$router.push('/social/:id/:userId/friends')">Друзья</my-button>
+                    <my-button @click="$router.push('/social/:id/:userId/messages')">Сообщения</my-button>
+                    <my-button @click="$router.push('/social/:id/:userId/settings')">Настройки</my-button>
                 </template>
             </nav-bar>
         </template>
@@ -19,7 +21,7 @@
 
 <script>
 export default {
-    name: "UserPageComponent"
+    name: "SocialPageComponent"
 }
 </script>
 

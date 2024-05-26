@@ -1,15 +1,15 @@
 <template>
-    <span class="lead"><slot></slot></span> <input type="text" name="name">
+    <textarea rows="5" placeholder="О себе" name="about"></textarea>
 </template>
 
 <script>
 export default {
-    name: "MyInput"
+    name: "TextareaAbout"
 }
 </script>
 
 <style scoped>
-input{
+*{
     padding: 7px;
     width: 100%;
     margin: 5px;

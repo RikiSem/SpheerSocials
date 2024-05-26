@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from "vue-router";
 import AuthPage from "../pages/AuthPage.vue";
 import MainPage from "../pages/MainPage.vue";
 import UserSocialsPage from "../pages/UserSocialsPage.vue";
+import SocialPage from "../pages/SocialPage.vue";
 
 
 const routes = [
@@ -14,12 +15,12 @@ const routes = [
         component: MainPage
     },
     {
-        path: '/test',
-        component: MainPage
-    },
-    {
         path: '/user/socials',
         component: UserSocialsPage
+    },
+    {
+        path: '/social/:id',
+        component: SocialPage
     }
 ]
 

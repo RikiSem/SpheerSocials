@@ -34,9 +34,13 @@ export default {
         display: flex;
     }
     .dialog{
+        max-width: 20rem;
+        display: flex;
+        flex-direction: column;
         padding: 10px;
         margin: auto;
         background: white;
         border-radius: 10px;
+        align-items: center;
     }
 </style>

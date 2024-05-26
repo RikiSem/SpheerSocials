@@ -2,14 +2,16 @@
     <user-page-component>
         <div class="socialPage">
             <strong class="display-6"> Ваши сообщества </strong>
-            <div class="">
-                <strong class="lead">Доступно 3 из 3 сообщества для добавления</strong>
+            <div>
+                <strong class="lead">Доступно 3 из 3 сообществ для добавления</strong>
                 <my-button @click="show = true">+ Сообщество</my-button>
                 <my-dialog v-model:show="show">
-                    <form>
-
-                    </form>
-                    <my-input>Название сообщества</my-input>
+                    <my-button @click="show = true">Создать свое</my-button>
+                    <span class="lead"> или </span>
+                    <my-input>искать по названию</my-input>
+                    <my-list>
+                        <list-item>item 1</list-item>
+                    </my-list>
                 </my-dialog>
             </div>
             <my-list class="socialsList">
@@ -38,7 +40,6 @@ export default {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 </style>

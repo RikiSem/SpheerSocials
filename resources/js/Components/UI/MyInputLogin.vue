@@ -1,5 +1,5 @@
 <template>
-    <input @change="$emit('changeLogin', this.login)" v-model="login" type="text" placeholder="Login" required>
+    <input @change="$emit('changeLogin', this.login)" v-model="login" type="text" placeholder="Логин" required>
 </template>
 
 <script>

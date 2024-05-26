@@ -1,5 +1,5 @@
 <template>
-    <input @change="$emit('changePass', this.pass)" v-model="pass" type="password" placeholder="Password" required>
+    <input @change="$emit('changePass', this.pass)" v-model="pass" type="password" placeholder="Пароль" required>
 </template>
 
 <script>

@@ -10,25 +10,37 @@
                     <span class="lead"> или </span>
                     <my-input>искать по названию</my-input>
                     <my-list>
-                        <list-item>item 1</list-item>
                     </my-list>
                 </my-dialog>
             </div>
-            <my-list class="socialsList">
-                <list-item>item 1</list-item>
-            </my-list>
+            <my-list class="socialsList" :items="items"></my-list>
         </div>
     </user-page-component>
 </template>
 
 <script>
 import UserPageComponent from "../Components/UserPageComponent.vue";
+import axios from "axios";
+import {useRoute} from "vue-router";
 export default {
     name: "MainPage",
     components: {UserPageComponent},
     data(){
         return{
-            show: false
+            show: false,
+            items:[]
+        }
+    },
+    mounted(){
+        this.getSocials();
+    },
+    methods:{
+        async getSocials(){
+            try {
+                this.items = (await axios.get(`/api/getUserSocials/${ useRoute().params.userId }`)).data;
+            } catch(e) {
+                alert(e)
+            }
         }
     }
 }

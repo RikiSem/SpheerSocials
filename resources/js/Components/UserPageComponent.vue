@@ -6,8 +6,8 @@
                     <my-header></my-header>
                 </template>
                 <template v-slot:content>
-                    <my-button @click="$router.push('/user/settings')">Профиль</my-button>
-                    <my-button @click="$router.push('/user/socials')">Сообщества</my-button>
+                    <my-button @click="$router.push(`/user/${ $route.params.userId }/settings`)">Профиль</my-button>
+                    <my-button @click="$router.push(`/user/${ $route.params.userId }/socials`)">Сообщества</my-button>
                 </template>
             </nav-bar>
         </template>

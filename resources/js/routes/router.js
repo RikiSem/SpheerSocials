@@ -11,11 +11,12 @@ const routes = [
         component: AuthPage
     },
     {
-        path: '/user/settings',
+        path: '/user/:userId/settings',
+        name: 'homePage',
         component: MainPage
     },
     {
-        path: '/user/socials',
+        path: '/user/:userId/socials',
         component: UserSocialsPage
     },
     {

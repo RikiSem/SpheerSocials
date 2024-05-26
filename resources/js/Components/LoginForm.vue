@@ -28,7 +28,14 @@ export default {
         },
         async auth(){
             const response = await axios.post('/api/login', this.loginAuth);
-            console.log(response)
+            if (response.data !== false) {
+                this.$router.push({
+                    name: `homePage`,
+                    params: {
+                        userId: response.data
+                    }
+                });
+            }
         }
     }
 }

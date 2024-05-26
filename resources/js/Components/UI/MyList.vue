@@ -1,12 +1,18 @@
 <template>
-    <div class="list">
-        <slot></slot>
+    <div class="list" v-for="item in items">
+        <list-item @click="$router.push(`/social/${item.id}`)">{{ item.name }}</list-item>
     </div>
 </template>
 
 <script>
 export default {
-    name: "MyList"
+    name: "MyList",
+    props:{
+        items:{
+            type: Array,
+            required: true
+        }
+    }
 }
 </script>
 

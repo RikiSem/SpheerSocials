@@ -4,11 +4,13 @@
         <my-input-login @changeLogin="setLogin"></my-input-login>
         <my-input-mail @changeEmail="setMail"></my-input-mail>
         <my-input-pass @changePass="setPass"></my-input-pass>
-        <MyButton>Регистрация</MyButton>
+        <MyButton @click="sendInfo">Регистрация</MyButton>
     </form>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "MyRegForm",
     data() {
@@ -29,6 +31,10 @@ export default {
         },
         setMail(mail) {
             this.loginAuth.mail = mail;
+        },
+        async sendInfo(){
+            const resp = await axios.post(`/api/registration`, this.loginAuth);
+
         }
     },
 }

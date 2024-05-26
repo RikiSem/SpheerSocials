@@ -17,4 +17,7 @@ export default {
     padding: 10px;
     margin-top: 10px;
 }
+.listItem:hover{
+    cursor: pointer;
+}
 </style>

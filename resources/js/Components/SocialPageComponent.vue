@@ -6,10 +6,11 @@
                     <my-header></my-header>
                 </template>
                 <template v-slot:content>
-                    <my-button @click="$router.push('/social/:id/feed')">Лента</my-button>
-                    <my-button @click="$router.push('/social/:id/:userId/friends')">Друзья</my-button>
-                    <my-button @click="$router.push('/social/:id/:userId/messages')">Сообщения</my-button>
-                    <my-button @click="$router.push('/social/:id/:userId/settings')">Настройки</my-button>
+                    <my-button @click="$router.push(`/social/${ $route.params.id }/:userId/profile`)">Профиль</my-button>
+                    <my-button @click="$router.push(`/social/${ $route.params.id }/:userId/feed`)">Лента</my-button>
+                    <my-button @click="$router.push(`/social/${ $route.params.id }/:userId/friends`)">Друзья</my-button>
+                    <my-button @click="$router.push(`/social/${ $route.params.id }/:userId/messages`)">Сообщения</my-button>
+                    <my-button @click="$router.push(`/social/${ $route.params.id }/:userId/settings`)">Настройки</my-button>
                 </template>
             </nav-bar>
         </template>

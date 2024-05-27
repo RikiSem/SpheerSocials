@@ -1,10 +1,15 @@
 <template>
-    <span class="lead"><slot></slot></span> <input type="text" name="name">
+    <span class="lead"><slot></slot></span> <input @change="$emit('changeInput', this.name)" v-model="name" type="text" name="name">
 </template>
 
 <script>
 export default {
-    name: "MyInput"
+    name: "MyInput",
+    data(){
+        return {
+            name: ''
+        }
+    }
 }
 </script>
 

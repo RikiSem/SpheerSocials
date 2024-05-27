@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [ApiController::class, 'login']);
 Route::post('/registration', [ApiController::class, 'registration']);
 Route::get('/getUserSocials/{userId}', [ApiController::class, 'getUserSocials']);
+Route::post('/createNewSocial', [ApiController::class, 'createNewSocial']);

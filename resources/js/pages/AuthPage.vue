@@ -11,7 +11,7 @@
             <div class="col-12 auth_btns">
                 <my-button @click="dialogLoginVisible = true">Вход</my-button>
                 <my-button @click="dialogRegVisible = true">Регистрация</my-button>
-                <my-button @click="$router.push('/user/settings')">Тест</my-button>
+                <my-button @click="$router.push('/user/1/settings')">Тест</my-button>
             </div>
         </div>
         <my-footer></my-footer>

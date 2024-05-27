@@ -1,5 +1,5 @@
 import MyButton from "./MyButton.vue";
-import MyDialog from "../Dialog.vue";
+import MyDialog from "./Dialog.vue";
 import LoginForm from "../LoginForm.vue";
 import MyInputLogin from "./MyInputLogin.vue";
 import MyInputPass from "./MyInputPass.vue";
@@ -10,7 +10,7 @@ import MyInputMail from "./MyInputMail.vue";
 import NavBar from "./NavBar.vue";
 import MainTemplate from "./MainTemplate.vue";
 import ContentTemplate from "./ContentTemplate.vue";
-import MyList from "./MyList.vue";
+import MySocialsList from "../MySocialsList.vue";
 import ListItem from "./ListItem.vue";
 import MyInput from "./MyInput.vue";
 import TextareaAbout from "./TextareaAbout.vue";
@@ -31,7 +31,7 @@ export default [
     NavBar,
     MainTemplate,
     ContentTemplate,
-    MyList,
+    MySocialsList,
     ListItem,
     TextareaAbout
 ]

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('about')->nullable(true);
+            $table->boolean('isPremium')->default(false);
             $table->timestamps();
         });
     }

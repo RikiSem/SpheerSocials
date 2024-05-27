@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\SocialRepository;
 use App\Classes\SocialsLinksRepository;
 use App\Classes\UserRepository;
 use Illuminate\Http\Request;
@@ -28,7 +29,7 @@ class ApiController extends Controller
             $email = $req->get('mail');
             $pass = $req->get('pass');
             UserRepository::saveNewUser($login, $email, $pass);
-            $result = 'done';
+            $result = 'true';
         } catch (\Exception $e) {
             $result = $e->getMessage();
         }
@@ -36,8 +37,23 @@ class ApiController extends Controller
         return $result;
     }
 
-    public function getUserSocials(string $userId)
+    public function getUserSocials(int $userId)
     {
         return SocialsLinksRepository::getUserSocialsByUserId($userId);
+    }
+
+    public function createNewSocial(Request $req)
+    {
+        try {
+            $name = $req->get('name');
+            $desription = $req->get('description');
+            $userId = (int)$req->get('author');
+            SocialRepository::createNewSocial($name, $desription, $userId);
+            $result = 'true';
+        } catch (\Exception $e) {
+            $result = $e->getMessage();
+        }
+
+        return $result;
     }
 }

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('socials', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->string('logoId');
+            $table->string('description')->nullable(true);
+            $table->string('logoId')->nullable(true);
+            $table->string('author');
             $table->timestamps();
         });
     }

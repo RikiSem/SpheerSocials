@@ -20,7 +20,7 @@ const routes = [
         component: UserSocialsPage
     },
     {
-        path: '/social/:id',
+        path: '/social/:id/:userId/feed',
         component: SocialPage
     }
 ]

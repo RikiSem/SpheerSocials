@@ -21,6 +21,7 @@ const routes = [
     },
     {
         path: '/social/:id/:userId/feed',
+        name: 'socialFeed',
         component: SocialPage
     }
 ]

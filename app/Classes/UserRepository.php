@@ -8,9 +8,14 @@ use App\Models\User;
 
 class UserRepository
 {
-    public static function saveNewUser(string $login, string $email, string $pass)
+    public static function getUser(int $userId): User
     {
-        User::createUser($login, $email, $pass);
+        return User::getUserById($userId);
+    }
+
+    public static function saveNewUser(string $login, string $email, string $pass): User
+    {
+        return User::createUser($login, $email, $pass);
     }
 
     public static function verifyLoginUser(string $login, string $pass)

@@ -1,6 +1,6 @@
 <template>
     <div class="list" v-for="item in items">
-        <list-item class="listItem" @click="$router.push(`/social/${ item.id }/${ $route.params.userId }/feed`)">
+        <list-item class="listItem">
             <div class="listItemContent">
                 <span class="socialName">
                     {{ item.name }}
@@ -8,12 +8,20 @@
                 <span class="socialDescription">
                     {{ item.description }}
                 </span>
+                <div v-if="item.isJoinedUser || !item.hasOwnProperty('isJoinedUser')">
+                    <my-button @click="$router.push(`/social/${ item.id }/${ $route.params.userId }/feed`)">Войти</my-button>
+                </div>
+                <div v-else>
+                    <my-button-red @click="$emit('joinSocial', item.id)">Присоединиться</my-button-red>
+                </div>
             </div>
         </list-item>
     </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     name: "MySocialsList",
     props:{
@@ -26,6 +34,7 @@ export default {
 </script>
 
 <style scoped>
+
 .listItemContent{
     overflow-x: hidden;
     overflow-y: hidden;

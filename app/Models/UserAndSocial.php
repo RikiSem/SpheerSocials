@@ -24,4 +24,5 @@ class UserAndSocial extends Model
                 ->join('socials','socials.id', '=', 'socialId',)
                 ->get() ?? false ;
     }
+
 }

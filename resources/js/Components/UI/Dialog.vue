@@ -34,7 +34,7 @@ export default {
         display: flex;
     }
     .dialog{
-        max-width: 20rem;
+        max-width: 35rem;
         display: flex;
         flex-direction: column;
         padding: 10px;

@@ -3,7 +3,7 @@
         <div class="socialPage">
             <strong class="display-6"> Ваши сообщества </strong>
             <div>
-                <strong class="lead">Доступно 3 из 3 сообществ для добавления</strong>
+                <strong class="lead">Доступно {{ this.user.limit - this.joinedSocials.length }} из {{ this.user.limit }} сообществ для добавления</strong>
                 <my-button @click="show = true">+ Сообщество</my-button>
                 <my-dialog v-model:show="show">
                     <my-button @click="showCreateSocialDialog = true">Создать свое</my-button>
@@ -13,11 +13,12 @@
                         <my-button @click="createNewSocial">Создать</my-button>
                     </my-dialog>
                     <span class="lead"> или </span>
-                    <my-input>искать по названию</my-input>
-                    <my-socials-list></my-socials-list>
+                    <my-input v-model:name="searchInput" @changeInput="searchSocials">искать по названию</my-input>
+                    <div class="searchByNameDiv"></div>
+                    <my-socials-list @joinSocial="joinToSocial" :items="searchSocialsResult"></my-socials-list>
                 </my-dialog>
             </div>
-            <my-socials-list class="socialsList" :items="items"></my-socials-list>
+            <my-socials-list class="socialsList" :items="joinedSocials"></my-socials-list>
         </div>
     </user-page-component>
 </template>
@@ -31,26 +32,62 @@ export default {
     components: {UserPageComponent},
     data(){
         return{
+            user: '',
             show: false,
             showCreateSocialDialog: false,
-            items: [],
-            newSocial:{
+            joinedSocials: [],
+            newSocial: {
                 name: '',
                 description: '',
                 author: this.$route.params.userId,
             },
+            searchSocialsResult: [],
         }
     },
     mounted(){
+        this.getUser();
         this.getSocials();
     },
     methods:{
-        test(){
-            alert(1);
+        alertWarning(message) {
+            alert(message);
+        },
+        isAvailableJoinToSocial() {
+            return this.user.limit - this.joinedSocials.length > 0;
+        },
+        redirectToSocial(socialId) {
+            this.$router.push({
+                name: 'socialFeed',
+                params: {
+                    id: socialId,
+                    userId: this.$route.params.userId
+                }
+            });
+        },
+        async joinToSocial(socialId) {
+            if(this.isAvailableJoinToSocial()) {
+                const response = await axios.post(`/api/socials/join/${ socialId }/${ this.$route.params.userId }`);
+                if (response.status === 200) {
+                    this.redirectToSocial(socialId)
+                }
+            } else {
+                this.alertWarning('Превышен лимит по количеству сообществ');
+            }
+        },
+        async getUser()
+        {
+            this.user = (await axios.get(`/api/user/${ this.$route.params.userId }/get`)).data;
+        },
+        async searchSocials(name) {
+            try {
+                this.searchSocialsResult = (await axios.get(`/api/socials/search/${name}/${ this.$route.params.userId }`)).data;
+            } catch(e) {
+                console.log(e)
+            }
         },
         async getSocials(){
             try {
-                this.items = (await axios.get(`/api/getUserSocials/${ useRoute().params.userId }`)).data;
+                this.joinedSocials = (await axios.get(`/api/socials/getUserSocials/${ this.$route.params.userId }`)).data;
             } catch(e) {
                 console.log(e)
             }
@@ -63,7 +100,13 @@ export default {
         },
         async createNewSocial(){
             try {
-                const resp = await axios.post(`/api/createNewSocial`, this.newSocial);
+                if(this.isAvailableJoinToSocial()) {
+                    const response = await axios.post(`/api/socials/create`, this.newSocial);
+                    this.redirectToSocial(response.data)
+                } else {
+                    this.alertWarning('Превышен лимит по количеству сообществ');
+                }
+
             } catch(e) {
                 console.log(e)
             }
@@ -78,6 +121,11 @@ export default {
     flex-direction: column;
     margin-left: auto;
     margin-right: auto;
+}
+
+.searchByNameDiv{
+    width: 100%;
+    border-bottom: 3px solid #4949a7;
 }
 
 </style>

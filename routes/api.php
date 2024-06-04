@@ -15,11 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 Route::post('/login', [ApiController::class, 'login']);
 Route::post('/registration', [ApiController::class, 'registration']);
-Route::get('/getUserSocials/{userId}', [ApiController::class, 'getUserSocials']);
-Route::post('/createNewSocial', [ApiController::class, 'createNewSocial']);
+Route::prefix('/socials')->group(function () {
+    Route::post('/create', [ApiController::class, 'createNewSocial']);
+    Route::post('/join/{socialId}/{userId}', [ApiController::class, 'joinToSocials']);
+    Route::get('/getUserSocials/{userId}', [ApiController::class, 'getUserSocials']);
+    Route::get('/search/{name}/{userId}', [ApiController::class, 'searchSocials']);
+});
+Route::prefix('/user')->group(function () {
+    Route::prefix('/{userId}')->group(function () {
+        Route::get('/get', [ApiController::class, 'getUser']);
+    });
+});

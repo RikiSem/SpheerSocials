@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Classes\SocialLimitRepository;
 use App\Classes\SocialRepository;
 use App\Classes\SocialsLinksRepository;
 use App\Classes\UserRepository;
@@ -28,7 +29,8 @@ class ApiController extends Controller
             $login = $req->get('login');
             $email = $req->get('mail');
             $pass = $req->get('pass');
-            UserRepository::saveNewUser($login, $email, $pass);
+            $user = UserRepository::saveNewUser($login, $email, $pass);
+            SocialLimitRepository::addLimit($user->id);
             $result = 'true';
         } catch (\Exception $e) {
             $result = $e->getMessage();
@@ -48,12 +50,26 @@ class ApiController extends Controller
             $name = $req->get('name');
             $desription = $req->get('description');
             $userId = (int)$req->get('author');
-            SocialRepository::createNewSocial($name, $desription, $userId);
-            $result = 'true';
+            $result = SocialRepository::createNewSocial($name, $desription, $userId);
         } catch (\Exception $e) {
             $result = $e->getMessage();
         }
 
         return $result;
+    }
+
+    public function searchSocials(string $name, int $userId)
+    {
+        return SocialRepository::getSocialsByName($name, $userId);
+    }
+
+    public function joinToSocials(int $socialId, int $userId)
+    {
+        SocialsLinksRepository::addUserToSocial($userId, $socialId);
+    }
+
+    public function getUser(int $userId)
+    {
+        return UserRepository::getUser($userId);
     }
 }

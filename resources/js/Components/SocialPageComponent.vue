@@ -16,7 +16,9 @@
             </nav-bar>
         </template>
         <template v-slot:content>
-            <slot></slot>
+            <div class="socialPageContent">
+                <slot></slot>
+            </div>
         </template>
     </main-template>
 </template>
@@ -28,5 +30,9 @@ export default {
 </script>
 
 <style scoped>
-
+.socialPageContent{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
 </style>

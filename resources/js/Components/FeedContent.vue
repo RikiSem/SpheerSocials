@@ -1,23 +1,14 @@
 <template>
     <div v-show="show" class="feedContent" v-for="item in items">
-        <div>
-            <div class="feedItemHeader">
-                <p>{{ item.date }}</p>
-                <p>{{ item.title }}</p>
-            </div>
-            <div class="feedItemBody">
-                <p>{{ item.body }}</p>
-                <div >
-                    <img v-for="imgRes in item.imgs" :src="imgRes">
-                </div>
-            </div>
-        </div>
+        <my-post :item="item"></my-post>
     </div>
 </template>
 
 <script>
+import MyPost from "./MyPost.vue";
 export default {
     name: "FeedContent",
+    components: {MyPost},
     props: {
         show: {
             default: false,

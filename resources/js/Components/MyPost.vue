@@ -7,9 +7,13 @@
         <div class="feedItemBody">
             <p>{{ item.body }}</p>
             <div class="feedItemImgs">
-                <img v-for="(imgRes) in item.imgs" :src="imgRes" class="img">
+                <img @click="showImg(imgRes)" v-for="(imgRes) in item.imgs" :src="imgRes" class="img">
             </div>
+            <post-control-panel></post-control-panel>
         </div>
+        <img-modal v-model:show="showImgModal">
+            <img :src="this.currentImg">
+        </img-modal>
     </div>
 </template>
 
@@ -21,12 +25,28 @@ export default {
         }
     },
     name: "MyPost",
+    data(){
+        return{
+            showImgModal: false,
+            currentImg: ''
+        }
+    },
+    methods: {
+        showImg(img){
+            this.currentImg = img;
+            this.showImgModal = true;
+        }
+    }
 }
 </script>
 
 <style scoped>
 .post{
-
+    padding: 5px;
+    min-width: 70%;
+    margin: 5px auto;
+    border-radius: 7px;
+    border: 1px solid var(--color);
 }
 .feedItemImgs{
     display: flex;
@@ -35,6 +55,8 @@ export default {
     align-content: flex-start;
 }
 .img {
-    width: clamp(15rem, 0.25rem + 2vw, 2rem);
+    cursor: pointer;
+    margin: 5px;
+    width: clamp(7rem, 0.25rem + 2vw, 2rem);
 }
 </style>

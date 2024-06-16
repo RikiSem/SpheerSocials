@@ -15,11 +15,16 @@ import ListItem from "./ListItem.vue";
 import MyInput from "./MyInput.vue";
 import TextareaAbout from "./TextareaAbout.vue";
 import MyButtonRed from "./MyButtonRed.vue";
+import ImgModal from "./ImgModal.vue";
+import ReactionBtn from "./ReactionBtn.vue";
+import PostControlPanel from "./PostControlPanel.vue";
 
 export default [
     MyButton,
     MyButtonRed,
+    ReactionBtn,
     MyDialog,
+    ImgModal,
     LoginForm,
     MyInput,
     MyInputMail,
@@ -33,5 +38,6 @@ export default [
     ContentTemplate,
     MySocialsList,
     ListItem,
-    TextareaAbout
+    TextareaAbout,
+    PostControlPanel
 ]

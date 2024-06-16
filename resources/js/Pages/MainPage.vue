@@ -3,7 +3,7 @@
         <div class="userSettings">
             <strong class="display-6"> Настройки профиля </strong>
                 <div class="avatarSetting">
-                    <img class="avatarImg" src="../../../public/imgs/avatars/default.png">
+                    <img class="avatarImg" :src="this.avatarPic">
                     <input type="file" name="avatar" accept=".png .jpeg .jpg .gif">
                 </div>
             <my-input-login></my-input-login>
@@ -24,12 +24,23 @@
 
 <script>
 import UserPageComponent from "../Components/UserPageComponent.vue";
+import axios from "axios";
 export default {
     name: "MainPage",
     components: {UserPageComponent},
     data(){
         return{
+            avatarPic: '',
             show: false
+        }
+    },
+    mounted() {
+        this.getAvatar();
+    },
+    methods: {
+        async getAvatar(){
+            const response = await axios.get(`/api/user/${ this.$route.params.userId }/getAvatar`);
+            this.avatarPic = response.data;
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
-    <div v-show="show" class="feedContent" v-for="item in items">
-        <my-post :item="item"></my-post>
+    <div v-show="show" class="feedContent" >
+        <my-post v-for="item in items" :item="item"></my-post>
     </div>
 </template>
 
@@ -26,6 +26,7 @@ export default {
 .feedContent{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: available;
+    height: available;
 }
 </style>

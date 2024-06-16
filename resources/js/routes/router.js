@@ -1,8 +1,8 @@
 import {createRouter, createWebHistory} from "vue-router";
-import AuthPage from "../pages/AuthPage.vue";
-import MainPage from "../pages/MainPage.vue";
-import UserSocialsPage from "../pages/UserSocialsPage.vue";
-import SocialPage from "../pages/SocialPage.vue";
+import AuthPage from "../Pages/AuthPage.vue";
+import MainPage from "../Pages/MainPage.vue";
+import UserSocialsPage from "../Pages/UserSocialsPage.vue";
+import SocialPage from "../Pages/SocialPage.vue";
 
 
 const routes = [

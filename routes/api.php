@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
+Route::get('/getHeaderPic', [ApiController::class, 'getHeaderPic']);
+
 Route::post('/login', [ApiController::class, 'login']);
 Route::post('/registration', [ApiController::class, 'registration']);
 Route::prefix('/socials')->group(function () {
@@ -30,5 +32,6 @@ Route::prefix('/socials')->group(function () {
 Route::prefix('/user')->group(function () {
     Route::prefix('/{userId}')->group(function () {
         Route::get('/get', [ApiController::class, 'getUser']);
+        Route::get('/getAvatar', [ApiController::class, 'getUserAvatar']);
     });
 });

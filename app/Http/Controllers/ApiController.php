@@ -68,8 +68,18 @@ class ApiController extends Controller
         SocialsLinksRepository::addUserToSocial($userId, $socialId);
     }
 
+    public function getHeaderPic()
+    {
+        return ImageController::getMainPic();
+    }
+
     public function getUser(int $userId)
     {
         return UserRepository::getUser($userId);
+    }
+
+    public function getUserAvatar(int $userId)
+    {
+        return ImageController::getUserAvatar($userId);
     }
 }

@@ -44,6 +44,34 @@ export default {
                         'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
                         'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
                     ],
+                },
+                {
+                    id: 3,
+                    title: 'тестовый заголовок в привате 2',
+                    body: 'тестовый текст в привате 2',
+                    date: Date.now(),
+                    imgs: [
+                        'https://cs13.pikabu.ru/post_img/big/2023/04/07/7/168086774517208100.jpg',
+                        'https://cs14.pikabu.ru/post_img/big/2023/04/07/7/168086774615373935.jpg',
+                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
+                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
+                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
+                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
+                    ],
+                },
+                {
+                    id: 4,
+                    title: 'тестовый заголовок в привате 2',
+                    body: 'тестовый текст в привате 2',
+                    date: Date.now(),
+                    imgs: [
+                        'https://cs13.pikabu.ru/post_img/big/2023/04/07/7/168086774517208100.jpg',
+                        'https://cs14.pikabu.ru/post_img/big/2023/04/07/7/168086774615373935.jpg',
+                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
+                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
+                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
+                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
+                    ],
                 }
             ],
             publicFeedData: [

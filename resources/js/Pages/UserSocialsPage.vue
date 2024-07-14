@@ -8,7 +8,8 @@
                 <my-dialog v-model:show="show">
                     <my-button @click="showCreateSocialDialog = true">Создать свое</my-button>
                     <my-dialog v-model:show="showCreateSocialDialog">
-                        <my-input @changeInput="setNewSocialname" v-model:name="newSocial.name">Название сообщества</my-input>
+                        <error-msg :errorMsg="createNewSocialSocialError"></error-msg>
+                        <my-input @changeInput="setNewSocialName" v-model:name="newSocial.name">Название сообщества</my-input>
                         <textarea-about @changeTextareaAbout="setNewSocialDescription" v-model:text="newSocial.description">Описание сообщества</textarea-about>
                         <my-button @click="createNewSocial">Создать</my-button>
                     </my-dialog>
@@ -32,6 +33,7 @@ export default {
     components: {UserPageComponent},
     data(){
         return{
+            createNewSocialSocialError: '',
             user: '',
             show: false,
             showCreateSocialDialog: false,
@@ -93,11 +95,14 @@ export default {
                 console.log(e)
             }
         },
-        setNewSocialname(name){
+        setNewSocialName(name){
             this.newSocial.name = name;
         },
         setNewSocialDescription(description){
             this.newSocial.description = description;
+        },
+        setErrorMsg(text) {
+            this.createNewSocialSocialError = text
         },
         async createNewSocial(){
             try {
@@ -105,11 +110,11 @@ export default {
                     const response = await axios.post(`/api/socials/create`, this.newSocial);
                     this.redirectToSocial(response.data)
                 } else {
-                    this.alertWarning('Превышен лимит по количеству сообществ');
+                    this.setErrorMsg('Превышен лимит по количеству сообществ');
                 }
 
             } catch(e) {
-                console.log(e)
+                this.setErrorMsg(e.response.data.content);
             }
         }
     }

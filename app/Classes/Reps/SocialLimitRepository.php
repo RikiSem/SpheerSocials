@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Classes;
+namespace App\Classes\Reps;
 
 
 use App\Models\UserSocialLimit;

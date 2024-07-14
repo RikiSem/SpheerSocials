@@ -18,6 +18,8 @@ import MyButtonRed from "./MyButtonRed.vue";
 import ImgModal from "./ImgModal.vue";
 import ReactionBtn from "./ReactionBtn.vue";
 import PostControlPanel from "./PostControlPanel.vue";
+import MyFile from "./MyFile.vue";
+import ErrorMsg from "./ErrorMsg.vue";
 
 export default [
     MyButton,
@@ -39,5 +41,7 @@ export default [
     MySocialsList,
     ListItem,
     TextareaAbout,
-    PostControlPanel
+    PostControlPanel,
+    MyFile,
+    ErrorMsg,
 ]

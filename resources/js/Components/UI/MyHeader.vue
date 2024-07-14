@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="header_content">
-            <img :src="this.picUrl">
+            <img src="/public/mainPic.png">
             <p class="h4">Spheer</p>
         </div>
 
@@ -9,24 +9,9 @@
 </template>
 
 <script>
-import axios from "axios";
 
 export default {
     name: "MyHeader",
-    data(){
-      return{
-          picUrl: '',
-      }
-    },
-    mounted(){
-        this.getHeaderPic();
-    },
-    methods:{
-        async getHeaderPic(){
-            const response = await (axios.get('/api/getHeaderPic'));
-            this.picUrl = response.data;
-        }
-    }
 }
 </script>
 

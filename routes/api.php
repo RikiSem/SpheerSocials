@@ -19,8 +19,6 @@ use Illuminate\Support\Facades\Route;
     return $request->user();
 });*/
 
-Route::get('/getHeaderPic', [ApiController::class, 'getHeaderPic']);
-
 Route::post('/login', [ApiController::class, 'login']);
 Route::post('/registration', [ApiController::class, 'registration']);
 Route::prefix('/socials')->group(function () {
@@ -28,6 +26,11 @@ Route::prefix('/socials')->group(function () {
     Route::post('/join/{socialId}/{userId}', [ApiController::class, 'joinToSocials']);
     Route::get('/getUserSocials/{userId}', [ApiController::class, 'getUserSocials']);
     Route::get('/search/{name}/{userId}', [ApiController::class, 'searchSocials']);
+});
+Route::prefix('/post')->group(function () {
+    Route::post('/create', [ApiController::class, 'createPost']);
+    Route::get('/public/get/{socialId}/{userId}', [ApiController::class, 'getPublicPosts']);
+    Route::get('/private/get/{socialId}/{userId}', [ApiController::class, 'getPrivatePosts']);
 });
 Route::prefix('/user')->group(function () {
     Route::prefix('/{userId}')->group(function () {

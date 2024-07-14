@@ -4,102 +4,43 @@
         <my-button class="btn" @click="openPrivate">Ваша лента</my-button>
     </div>
     <feed-content :show="publicFeed" :items="publicFeedData"></feed-content>
-    <feed-content :show="privateFeed" :items="privateFeedData"></feed-content>
+    <feed-content :show="privateFeed" :items="privateFeedData">
+        <new-post-form @test="getPrivatePosts" :show="privateFeed"></new-post-form>
+    </feed-content>
 </template>
 
 <script>
 import FeedContent from "./FeedContent.vue";
+import axios from "axios";
+import NewPostForm from "./NewPostForm.vue";
 export default {
     name: "MyFeed",
-    components: {FeedContent},
+    components: {NewPostForm, FeedContent},
     data() {
         return {
             publicFeed: true,
             privateFeed: false,
-            privateFeedData: [
-                {
-                    id: 1,
-                    title: 'тестовый заголовок в привате 1',
-                    body: 'тестовый текст в привате 1',
-                    date: Date.now(),
-                    imgs: [
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                    ],
-                },
-                {
-                    id: 2,
-                    title: 'тестовый заголовок в привате 2',
-                    body: 'тестовый текст в привате 2',
-                    date: Date.now(),
-                    imgs: [
-                        'https://cs13.pikabu.ru/post_img/big/2023/04/07/7/168086774517208100.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/07/7/168086774615373935.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                    ],
-                },
-                {
-                    id: 3,
-                    title: 'тестовый заголовок в привате 2',
-                    body: 'тестовый текст в привате 2',
-                    date: Date.now(),
-                    imgs: [
-                        'https://cs13.pikabu.ru/post_img/big/2023/04/07/7/168086774517208100.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/07/7/168086774615373935.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                    ],
-                },
-                {
-                    id: 4,
-                    title: 'тестовый заголовок в привате 2',
-                    body: 'тестовый текст в привате 2',
-                    date: Date.now(),
-                    imgs: [
-                        'https://cs13.pikabu.ru/post_img/big/2023/04/07/7/168086774517208100.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/07/7/168086774615373935.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                        'https://i.pinimg.com/736x/48/aa/24/48aa24379e05c30b3358925e80bb85c6.jpg',
-                        'https://cs14.pikabu.ru/post_img/big/2023/04/11/6/1681200095130946275.jpg',
-                    ],
-                }
-            ],
-            publicFeedData: [
-                {
-                    id: 1,
-                    title: 'тестовый заголовок в паблике 1',
-                    body: 'тестовый текст в паблике 1',
-                    date: Date.now(),
-                    imgs: [
-                        'https://pibig.info/uploads/posts/2021-04/1618919236_23-pibig_info-p-anime-tyan-anime-krasivo-24.jpg',
-                    ],
-                },
-                {
-                    id: 2,
-                    title: 'тестовый заголовок в паблике 2',
-                    body: 'тестовый текст в паблике 2',
-                    date: Date.now(),
-                    imgs: [],
-                }
-            ],
+            privateFeedData: [],
+            publicFeedData: [],
         }
     },
     mounted() {
         this.getFeedData();
+        this.getPrivatePosts();
+        this.getPublicPosts();
     },
     methods: {
-        getFeedData(){
-
+        async getPrivatePosts() {
+            const response = await axios.get(`/api/post/private/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
+            this.privateFeedData = response.data.content;
+        },
+        async getPublicPosts() {
+            const response = await axios.get(`/api/post/public/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
+        },
+        async getFeedData(){
+            const response = await axios.get(`/api/post/get/${ this.$route.params.id }/${ this.$route.params.userId }`);
+            this.privateFeedData = response.data.content['privateFeed'];
+            this.publicFeedData = response.data.content['publicFeed'];
         },
         openPublic(){
             this.privateFeed = false;
@@ -120,7 +61,7 @@ export default {
     height: fit-content;
     border-bottom: 3px solid #4949a7;
 }
-.btn{
+.feedNavigations .btn{
     margin: auto;
     width: 100%;
     border: none;

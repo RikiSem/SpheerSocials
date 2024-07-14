@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Classes;
+namespace App\Classes\Reps;
 
 
 use App\Models\Social;
@@ -10,13 +10,18 @@ use Illuminate\Database\Eloquent\Collection;
 
 class SocialsLinksRepository
 {
-    public static function addUserToSocial(int $userId, int $socialId)
+    public static function addUserToSocial(int $userId, int $socialId): int
     {
-        UserAndSocial::addUserToSocial($userId, $socialId);
+        return UserAndSocial::create([
+            'userId' => $userId,
+            'socialId' => $socialId
+        ])->id;
     }
     public static function getUserSocialsByUserId(int $userId)
     {
-        return UserAndSocial::getUserSocials($userId);
+        return UserAndSocial::where('userId', '=', $userId)
+                ->join('socials','socials.id', '=', 'socialId',)
+                ->get() ?? false ;;
     }
 
     public static function getLinksBySocialIdAndUserId(int $userId, int $socialId): Collection

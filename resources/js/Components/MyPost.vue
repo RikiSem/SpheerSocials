@@ -1,19 +1,15 @@
 <template>
     <div class="post">
         <div class="feedItemHeader">
-            <p>{{ item.date }}</p>
-            <p>{{ item.title }}</p>
+            <p>{{ item.created_at }}</p>
         </div>
         <div class="feedItemBody">
-            <p>{{ item.body }}</p>
-            <div class="feedItemImgs">
-                <img @click="showImg(imgRes)" v-for="(imgRes) in item.imgs" :src="imgRes" class="img">
+            <p>{{ item.text }}</p>
+            <div class="feedItemFiles">
+                <my-file v-for="file in item.files" :file="file"></my-file>
             </div>
             <post-control-panel></post-control-panel>
         </div>
-        <img-modal v-model:show="showImgModal">
-            <img :src="this.currentImg">
-        </img-modal>
     </div>
 </template>
 
@@ -21,22 +17,10 @@
 export default {
     props: {
         item: {
-            type: Array
+            type: Object
         }
     },
-    name: "MyPost",
-    data(){
-        return{
-            showImgModal: false,
-            currentImg: ''
-        }
-    },
-    methods: {
-        showImg(img){
-            this.currentImg = img;
-            this.showImgModal = true;
-        }
-    }
+    name: "MyPost"
 }
 </script>
 
@@ -48,15 +32,10 @@ export default {
     border-radius: 7px;
     border: 1px solid var(--color);
 }
-.feedItemImgs{
+.feedItemFiles{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-content: flex-start;
-}
-.img {
-    cursor: pointer;
-    margin: 5px;
-    width: clamp(7rem, 0.25rem + 2vw, 2rem);
 }
 </style>

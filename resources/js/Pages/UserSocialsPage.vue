@@ -45,6 +45,7 @@ export default {
         }
     },
     mounted(){
+        document.title = 'Сообщества';
         this.getUser();
         this.getSocials();
     },
@@ -76,18 +77,18 @@ export default {
         },
         async getUser()
         {
-            this.user = (await axios.get(`/api/user/${ this.$route.params.userId }/get`)).data;
+            this.user = (await axios.get(`/api/user/${ this.$route.params.userId }/get`)).data.content;
         },
         async searchSocials(name) {
             try {
-                this.searchSocialsResult = (await axios.get(`/api/socials/search/${name}/${ this.$route.params.userId }`)).data;
+                this.searchSocialsResult = (await axios.get(`/api/socials/search/${name}/${ this.$route.params.userId }`)).data.content;
             } catch(e) {
                 console.log(e)
             }
         },
         async getSocials(){
             try {
-                this.joinedSocials = (await axios.get(`/api/socials/getUserSocials/${ this.$route.params.userId }`)).data;
+                this.joinedSocials = (await axios.get(`/api/socials/getUserSocials/${ this.$route.params.userId }`)).data.content;
             } catch(e) {
                 console.log(e)
             }

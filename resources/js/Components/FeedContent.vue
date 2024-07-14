@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <slot></slot>
+    </div>
     <div v-show="show" class="feedContent" >
         <my-post v-for="item in items" :item="item"></my-post>
     </div>
@@ -28,5 +31,9 @@ export default {
     flex-direction: column;
     width: available;
     height: available;
+    overflow-y: scroll;
+}
+.feedContent::-webkit-scrollbar{
+    display: none;
 }
 </style>

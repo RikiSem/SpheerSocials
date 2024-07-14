@@ -7,17 +7,11 @@ use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
-    private const HEADER_IMG = 'mainPic.png';
     private const DEFAULT_AVATAR = 'default.png';
-
-    public static function getMainPic()
-    {
-        return Storage::url('/imgs/' . self::HEADER_IMG);
-    }
 
     public static function getUserAvatar(int $userId): string
     {
-        $result = UserAvatar::where('userId', '=', $userId)->first();
+        $result = UserAvatar::where('userId', '=', $userId)->orderBy('id', 'DESC')->first();
         if (!isset($result->img)) {
             $result = self::getDefaultAvatar();
         } else {
@@ -28,6 +22,6 @@ class ImageController extends Controller
 
     public static function getDefaultAvatar()
     {
-        return Storage::url('/imgs/avatars/' . self::DEFAULT_AVATAR);
+        return Storage::url('imgs/avatars/' . self::DEFAULT_AVATAR);
     }
 }

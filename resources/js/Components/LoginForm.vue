@@ -1,6 +1,7 @@
 <template>
     <form @submit.prevent>
         <h1 class="dialogHeader">Вход</h1>
+        <error-msg :errorMsg="errorMsg"></error-msg>
         <my-input-login @changeLogin="setLogin"></my-input-login>
         <my-input-pass @changePass="setPass"></my-input-pass>
         <MyButton @click="auth">Войти</MyButton>
@@ -13,6 +14,7 @@ export default {
     name: "LoginForm",
     data() {
         return {
+            errorMsg: '',
             loginAuth: {
                 login: '',
                 pass: '',
@@ -26,15 +28,20 @@ export default {
         setPass(pass){
             this.loginAuth.pass = pass;
         },
+        setErrorMsg(text) {
+            this.errorMsg = text;
+        },
         async auth(){
-            const response = await axios.post('/api/login', this.loginAuth);
-            if (response.data !== false) {
+            try {
+                const response = await axios.post('/api/login', this.loginAuth);
                 this.$router.push({
                     name: `homePage`,
                     params: {
-                        userId: response.data
+                        userId: response.data.content
                     }
                 });
+            } catch (e) {
+                this.setErrorMsg(e.response.data.content);
             }
         }
     }

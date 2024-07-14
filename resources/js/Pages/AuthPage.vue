@@ -8,10 +8,9 @@
             <my-dialog class="formReg" v-model:show="dialogRegVisible">
                 <my-reg-form></my-reg-form>
             </my-dialog>
-            <div class="col-12 auth_btns">
+            <div class="auth_btns">
                 <my-button @click="dialogLoginVisible = true">Вход</my-button>
                 <my-button @click="dialogRegVisible = true">Регистрация</my-button>
-                <my-button @click="$router.push('/user/1/settings')">Тест</my-button>
             </div>
         </div>
         <my-footer></my-footer>
@@ -37,6 +36,7 @@ export default {
     height: 100%;
 }
 .auth_btns {
+    display: flex;
     margin: auto;
 }
 </style>

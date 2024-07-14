@@ -36,11 +36,12 @@ export default {
     },
     mounted() {
         this.getAvatar();
+        document.title = 'Профиль';
     },
     methods: {
         async getAvatar(){
             const response = await axios.get(`/api/user/${ this.$route.params.userId }/getAvatar`);
-            this.avatarPic = response.data;
+            this.avatarPic = response.data.content;
         }
     }
 }

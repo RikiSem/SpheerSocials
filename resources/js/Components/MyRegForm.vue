@@ -41,6 +41,14 @@ export default {
         async sendInfo(){
             try {
                 const resp = await axios.post(`/api/registration`, this.loginAuth);
+                if (resp.status === 200) {
+                    this.$router.push({
+                        name: `homePage`,
+                        params: {
+                            userId: resp.data.content
+                        }
+                    });
+                }
             } catch (e) {
                 this.setErrorMsg(e.response.data.content);
             }

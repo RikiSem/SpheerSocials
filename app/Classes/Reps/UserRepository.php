@@ -9,14 +9,17 @@ use App\Models\User;
 
 class UserRepository
 {
-    public static function getUserByLogin(string $login): User
+    public static function getUserByLogin(string $login): User|null
     {
-        return User::getUserByLogin($login);
+        return User::where('login', '=', $login)->first();
     }
 
-    public static function getUser(int $userId): User
+    public static function getUserById(int $userId): User
     {
-        return User::getUserById($userId);
+        return User::select('users.id', 'users.login', 'users.about', 'users.isPremium', 'user_social_limits.limit')
+            ->where('users.id', '=', $userId)
+            ->join('user_social_limits', 'user_social_limits.userId', '=', 'users.id')
+            ->first();;
     }
 
     public static function saveNewUser(string $login, string $email, string $pass): User
@@ -26,7 +29,7 @@ class UserRepository
 
     public static function verifyLoginUser(string $login, string $pass)
     {
-        $user = User::getUserByLogin($login);
+        $user = self::getUserByLogin($login);
         try {
             if ($user) {
                 if (password_verify($pass, $user->getPassword())) {

@@ -14,13 +14,9 @@ class ApiController extends Controller
 {
     public function login(Request $req)
     {
-        try {
-            $login = $req->get('login');
-            $pass = $req->get('pass');
-            $result = UserRepository::verifyLoginUser($login, $pass);
-        } catch (\Exception $e) {
-            $result = $e->getMessage();
-        }
+        $login = $req->get('login');
+        $pass = $req->get('pass');
+        $result =  UserRepository::verifyLoginUser($login, $pass);
 
         return response($result, $result['status']);
     }
@@ -35,7 +31,7 @@ class ApiController extends Controller
             if (!isset($user)) {
                 $user = UserRepository::saveNewUser($login, $email, $pass);
                 SocialLimitRepository::addLimit($user->id);
-                $result = 'true';
+                $result = ResponseBuilder::okResponse($user->id);
             } else {
                 throw new \Exception('User with this login already exist');
             }
@@ -111,7 +107,7 @@ class ApiController extends Controller
 
     public function getUser(int $userId)
     {
-        $result = ResponseBuilder::okResponse(UserRepository::getUser($userId));
+        $result = ResponseBuilder::okResponse(UserRepository::getUserById($userId));
         return response($result, $result['status']);
     }
 

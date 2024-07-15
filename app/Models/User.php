@@ -27,10 +27,6 @@ class User extends Model
             ->first();
     }
 
-    public static function getUserByLogin(string $login): self|bool
-    {
-        return self::where('login', '=', $login)->first() ?? false;
-    }
 
     public function getId()
     {

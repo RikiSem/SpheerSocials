@@ -3,8 +3,9 @@
         <list-item class="listItem">
             <div class="listItemContent">
                 <span class="socialName">
-                    {{ item.name }}
+                    {{ item.name }}/
                 </span>
+                <span> / </span>
                 <span class="socialDescription">
                     {{ item.description }}
                 </span>
